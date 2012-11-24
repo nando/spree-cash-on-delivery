@@ -3,4 +3,5 @@
 
 en:
   cash_received: "Cash Received"
-  shipping_and_handling: 'Handling charges'
+  shipping_and_handling: 'Cash on Delivery Fee'
+  fee: "Chash on Delivery Fee: %{amount}"
