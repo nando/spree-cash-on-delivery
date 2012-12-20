@@ -1,7 +1,7 @@
 <!--
   insert_bottom '.payment-info'
 -->
-<% if order.payment && order.payment.source.nil? %>
+<% if order.payment && order.payment.payment_method.is_a?(Spree::CashOnDelivery::PaymentMethod) %>
   <span class="full-name">
     <%= t 'cash_on_delivery_label' %>
   </span>
