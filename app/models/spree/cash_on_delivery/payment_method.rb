@@ -11,7 +11,7 @@ module Spree
       payment.order.adjustments.each { |a| a.destroy if a.originator == nil }
       payment.order.adjustments.create({ :amount => payment.payment_method.preferred_charge.to_f,
                                  :source => payment,
-                                 :originator => payment,
+                                 :originator => self,
                                  :locked => true,
                                  :label => I18n.t(:cash_on_delivery_label) }, :without_protection => true)
     end
