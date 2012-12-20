@@ -1,0 +1,4 @@
+es:
+  cash_received: "Pago recibido"
+  cash_on_delivery_label: 'Gastos contra reembolso'
+  fee: "Gastos contra reembolso: %{amount}"

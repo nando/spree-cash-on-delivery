@@ -1,0 +1,4 @@
+fr:
+  cash_received: "Paiement reçu"
+  cash_on_delivery_label: 'Livraison contre remboursement'
+  fee: "Livraison contre remboursement: %{amount}"

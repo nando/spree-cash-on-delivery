@@ -1,5 +1,7 @@
 module Spree
   class CashOnDelivery::PaymentMethod < Spree::PaymentMethod
+    preference :charge, :string, :default => '5.0'
+    attr_accessible :preferred_charge
 
     def payment_profiles_supported?
       false # we want to show the confirm step.
@@ -7,15 +9,15 @@ module Spree
 
     def post_create(payment)
       payment.order.adjustments.each { |a| a.destroy if a.originator == nil }
-      payment.order.adjustments.create({ :amount => Spree::Config[:cash_on_delivery_charge],
+      payment.order.adjustments.create({ :amount => payment.payment_method.preferred_charge.to_f,
                                  :source => payment,
                                  :originator => payment,
                                  :locked => true,
-                                 :label => I18n.t(:shipping_and_handling) }, :without_protection => true)
+                                 :label => I18n.t(:cash_on_delivery_label) }, :without_protection => true)
     end
 
     def update_adjustment(adjustment, src)
-      adjustment.update_attribute_without_callbacks(:amount, Spree::Config[:cash_on_delivery_charge])
+      adjustment.update_attribute_without_callbacks(:amount, adjustment.order.payment.payment_method.preferred_charge.to_f)
     end
 
 

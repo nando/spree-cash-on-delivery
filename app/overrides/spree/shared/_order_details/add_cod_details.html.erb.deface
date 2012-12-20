@@ -1,0 +1,8 @@
+<!--
+  insert_bottom '.payment-info'
+-->
+<% if order.payment && order.payment.source.nil? %>
+  <span class="full-name">
+    <%= t 'cash_on_delivery_label' %>
+  </span>
+<% end %>
