@@ -8,7 +8,7 @@ module Spree
     end
 
     def post_create(payment)
-      payment.order.adjustments.each { |a| a.destroy if a.originator == nil }
+      payment.order.adjustments.each { |a| a.destroy if a.originator == self }
       payment.order.adjustments.create({ :amount => payment.payment_method.preferred_charge.to_f,
                                  :source => payment,
                                  :originator => self,
